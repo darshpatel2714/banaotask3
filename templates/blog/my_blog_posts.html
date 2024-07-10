@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog Posts</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-image: url('https://www.color-hex.com/palettes/87006.png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            margin-top: 100px;
+                
+        }      
+        </style>
+</head>
+<body>
+<center><h1>My Blog Posts</h1></center>
+    <center><ul>
+        {% for post in blog_posts %}
+            <li>{{ post.title }}</li>
+        {% endfor %}
+    </ul></center>
+</body>
+</html>

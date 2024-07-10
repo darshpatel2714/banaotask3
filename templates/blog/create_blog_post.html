@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Blog Post</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-image: url('https://media.istockphoto.com/id/1169630303/photo/blue-textured-background.webp?b=1&s=170667a&w=0&k=20&c=tI2xFhXqXFqMM0IvxSYY3F7LIwv450h2ch3yD-lZ9HU=');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            margin-top: 100px;
+                
+        }
+        .container { width: 50%; margin: 0 auto; padding: 20px; border: 3px solid #ccc; border-radius: 10px; background-color: #ccc;}
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, select { width: 23%; padding: 5px; }
+        button { padding: 10px 15px; background-color: #28a745; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #218838; }
+        .link { display: block; margin-top: 15px;}
+        </style>
+</head>
+<body>
+    <center><h1 style="color: white;">Create Blog Post</h1></center>
+    <center><div class="container"><form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form></div></center>
+</body>
+</html>

@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-image: url('https://t4.ftcdn.net/jpg/02/32/92/55/360_F_232925587_st4gM8b3TJHtjjddCIUNyVyFJmZqMmn4.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            margin-top: 40px;
+        
+        }
+        .container { width: 50%; margin: 0 auto; padding: 20px; border: 3px solid #ccc; border-radius: 10px; background-color: #ccc;}
+        .doctor-list { width: 50%; margin: 0 auto; padding: 20px; border: 3px solid #ccc; border-radius: 10px; background-color: #ccc;}
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, select { width: 100%; padding: 10px; }
+        button { padding: 10px 15px; background-color: #a72828; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        button:hover { background-color: #ff0101; }
+        .link { display: block; margin-top: 15px;}
+        </style>
+    {% load static %}
+</head>
+<body>
+    <center><div class="container">
+        <h1>Welcome, {{ user.first_name }} {{ user.last_name }}</h1>
+        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" style="width: 130px; height: 130px; border-radius: 50px;">
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Address: {{ user.address_line1 }}, {{ user.city }}, {{ user.state }}, {{ user.pincode }}</p>
+        <p>User Type: {{ user.user_type }}</p>
+        
+        <div class="doctor-list">
+            <h2>Available Doctors</h2>
+            <ul>
+                {% for doctor in doctors %}
+                <li>
+                    <img src="{{ doctor.profile_picture.url }}" alt="{{ doctor.get_full_name }}" width="50">
+                    <strong style="font-style: italic;">{{ doctor.get_full_name }}</strong>
+                    <button style="background-color: rgb(24, 59, 59);"><a href="{% url 'book_appointment' doctor.id %}" class="book-appointment" style="text-decoration: none; color: #ffffff;">Book Appointment</a></button>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+
+        <!-- Add this section -->
+        <button><a href="{% url 'blog_posts_by_category' 'Mental Health' %}" style="text-decoration: none; color: #ffffff;">Mental Health</a></button>&nbsp;
+        <button><a href="{% url 'blog_posts_by_category' 'Heart Disease' %}" style="text-decoration: none; color: #ffffff;">Heart Disease</a></button>&nbsp;
+        <button><a href="{% url 'blog_posts_by_category' 'Covid19' %}" style="text-decoration: none; color: #ffffff;">Covid19</a></button>&nbsp;
+        <button><a href="{% url 'blog_posts_by_category' 'Immunization' %}" style="text-decoration: none; color: #ffffff;">Immunization</a></button>&nbsp;
+        <br>
+        <br>
+        <button style="background-color: black;"><a href="{% url 'logout' %}" style="text-decoration: none; color: #ffffff;">Logout</a></button>
+
+    </div></center>
+</body>
+</html>
